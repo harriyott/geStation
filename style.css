@@ -1,0 +1,36 @@
+/* Utility */
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+/* General */
+
+#container {
+	height: 90%;
+	width: 100%;
+	background-color:#999;
+}
+
+#map {
+	background-image:url('./images/map.png');
+	width: 100%;
+	height:100%;
+}
