@@ -3,6 +3,20 @@
 		<title>geStation</title>
 		<link rel="stylesheet" href="./reset.css" type="text/css" />
 		<link rel="stylesheet" href="./style.css" type="text/css" />
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_sVrF7VqA26OXJu_S5a4YrtgzBjjZ4nY&sensor=false"></script>
+		    <script type="text/javascript">
+		      function initialize() {
+		        var mapOptions = {
+		          center: new google.maps.LatLng(54.226708, -2.790527),
+		          zoom: 6,
+		          mapTypeId: google.maps.MapTypeId.ROADMAP
+		        };
+		        var map = new google.maps.Map(document.getElementById("map-canvas"),
+		            mapOptions);
+		      }
+		      google.maps.event.addDomListener(window, 'load', initialize);
+		 </script>
 	</head>
 	<body>
 		<header>
@@ -11,29 +25,29 @@
 		<section>
 			<div id="container">
 				<div id="map">
-				
+					<div id="map-canvas"/></div>
 				</div>
 				<div id="stationlist">
 					<ul>
-						<li><a href="#">Teynham railway station 	1786</a></li>
-						<li><a href="#">Kilmarnock railway station 	1812</a></li>
-						<li><a href="#">Earlestown railway station 	1830</a></li>
-						<li><a href="#">Newton-le-Willows railway station 	1830</a></li>
-						<li><a href="#">Rainhill railway station 	1830</a></li>
-						<li><a href="#">Ardrossan Town railway station 	1831</a></li>
-						<li><a href="#">Atherton Bag Lane railway station 	1831</a></li>
-						<li><a href="#">Auchterhouse railway station 	1831</a></li>
-						<li><a href="#">Baldovan railway station 	1831</a></li>
-						<li><a href="#">Baldragon railway station 	1831</a></li>
-						<li><a href="#">Bolton Great Moor Street railway station 	1831</a></li>
-						<li><a href="#">Huyton Quarry Railway Station 	1832</a></li>
-						<li><a href="#">Appleton railway station 	1833</a></li>
-						<li><a href="#">Garforth railway station 	1834</a></li>
-						<li><a href="#">Micklefield railway station 	1834</a></li>
-						<li><a href="#">Selby railway station 	1834</a></li>
-						<li><a href="#">Blaydon railway station 	1835</a></li>
-						<li><a href="#">Grosmont railway station 	1836</a></li>
-						<li><a href="#">Edge Hill railway station 	1836</a></li>
+						<li><a href="#">Teynham railway station - 1786</a></li>
+						<li><a href="#">Kilmarnock railway station - 1812</a></li>
+						<li><a href="#">Earlestown railway station - 1830</a></li>
+						<li><a href="#">Newton-le-Willows railway station - 1830</a></li>
+						<li><a href="#">Rainhill railway station - 1830</a></li>
+						<li><a href="#">Ardrossan Town railway station - 1831</a></li>
+						<li><a href="#">Atherton Bag Lane railway station - 1831</a></li>
+						<li><a href="#">Auchterhouse railway station - 1831</a></li>
+						<li><a href="#">Baldovan railway station - 1831</a></li>
+						<li><a href="#">Baldragon railway station - 1831</a></li>
+						<li><a href="#">Bolton Great Moor Street railway station - 1831</a></li>
+						<li><a href="#">Huyton Quarry Railway Station - 1832</a></li>
+						<li><a href="#">Appleton railway station - 1833</a></li>
+						<li><a href="#">Garforth railway station - 1834</a></li>
+						<li><a href="#">Micklefield railway station - 1834</a></li>
+						<li><a href="#">Selby railway station - 1834</a></li>
+						<li><a href="#">Blaydon railway station - 1835</a></li>
+						<li><a href="#">Grosmont railway station - 1836</a></li>
+						<li><a href="#">Edge Hill railway station - 1836</a></li>
 						
 					</ul>
 				</div>

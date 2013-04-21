@@ -23,8 +23,18 @@ html[xmlns] .clearfix {
 
 /* General */
 
+body {
+	font-family: 'Droid Sans', Arial;
+	background-color: #bbcc44;
+}
+
 a {
-	color: #fff;
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 li {
@@ -34,19 +44,38 @@ li {
 #container {
 	height: 90%;
 	width: 100%;
-	background-color:#999;
+	background-color:#d3d3d3;
 	position: relative;
 }
 
+header {
+	height: 20px;
+	padding: 10px;
+	color: #333;
+}
+
 #map {
-	background-color: #ccc;
+	background-color: #c2e2e2;
 	width: 100%;
 	height:100%;
+	overflow: hidden;
+}
+
+#map-canvas {
+	width: 100%;
+	height: 100%;
 }
 
 #stationlist {
 	float: right;
-	background-color:#333;
+	background-color:#5588bb;
+	color: #fff;
+	line-height: 1.2;
+	overflow: scroll;
+}
+
+#stationlist ul {
+	padding: 10px;
 }
 
 @media screen and (orientation:portrait) {
@@ -56,6 +85,8 @@ li {
 	
 	#stationlist {
 		margin: 0 auto;
+		width: 100%;
+		height: 50%;
 	}
 }
 
@@ -64,6 +95,7 @@ li {
 	position: absolute;
 	top: 0px;
 	right:0px;
+	height: 100%;
 }
 
 }
