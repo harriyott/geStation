@@ -74,8 +74,8 @@ header {
 	overflow: scroll;
 }
 
-#stationlist ul {
-	padding: 10px;
+#stationlist ul li{
+	padding-left: 10px;
 }
 
 @media screen and (orientation:portrait) {
