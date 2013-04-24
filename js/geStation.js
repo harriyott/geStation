@@ -11,4 +11,9 @@
       };
     }
   });
+  var StationList = Backbone.Collection.extend ({
+    model: Station,
+    localStorage: new Backbone.LocalStorage("station-backbone")
+  });
+  var Stations = new StationList;
 });
