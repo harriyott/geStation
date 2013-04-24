@@ -43,6 +43,13 @@
               opened: 1900,
               closed: 1980
           });
+          Stations.create({
+              name: 'Newick and Chailey',
+              lat: 1.1,
+              lng: 50.1,
+              opened: 1900,
+              closed: 19850
+          });
       },
       addOne: function (station) {
           var view = new StationView({ model: station });
