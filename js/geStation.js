@@ -18,7 +18,7 @@
     }),
     Stations = new StationList(),
 
-    StationsView = Backbone.View.extend({
+    StationView = Backbone.View.extend({
       tagName: "li",
       template: _.template($('#station-template').html()),
       events: {
@@ -35,8 +35,19 @@
     AppView = Backbone.View.extend({
       el: $("#stationapp"),
       initialize: function() {
-        Stations.fetch();
-      }
+          this.listenTo(Stations, 'add', this.addOne);
+          Stations.create({
+              name: 'Uckfield',
+              lat: 1,
+              lng: 50,
+              opened: 1900,
+              closed: 1980
+          });
+      },
+      addOne: function (station) {
+          var view = new StationView({ model: station });
+          this.$("#bb-station-list").append(view.render().el);
+      },
     }),
     App = new AppView();
 });
