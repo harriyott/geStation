@@ -48,7 +48,10 @@ $(function() {
     }),
     StationList = Backbone.Collection.extend({
       model: Station,
-      localStorage: new Backbone.LocalStorage("station-backbone")
+      localStorage: new Backbone.LocalStorage("station-backbone"),
+      comparator: function (item) {
+         return item.get('opened');
+      }
     }),
     Stations = new StationList(),
 
@@ -74,7 +77,7 @@ $(function() {
               name: 'Uckfield',
               lat: 1,
               lng: 50,
-              opened: 1900,
+              opened: 1902,
               closed: 1980
           });
           Stations.create({
@@ -82,15 +85,14 @@ $(function() {
               lat: 1.1,
               lng: 50.1,
               opened: 1900,
-              closed: 19850
+              closed: 1985
           });
+          Stations.sort();
       },
       addOne: function (station) {
           var view = new StationView({ model: station });
           this.$("#bb-station-list").append(view.render().el);
-          
           var myLatlng = new google.maps.LatLng(station.attributes.lng,station.attributes.lat);          
-            
             var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: geStation.Map,
