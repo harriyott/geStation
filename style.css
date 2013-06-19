@@ -78,6 +78,10 @@ header {
 	padding-left: 10px;
 }
 
+h1 {
+   display:inline;
+}
+
 @media screen and (orientation:portrait) {
 	#map {
 		height: 60%;

@@ -1,4 +1,27 @@
-﻿$(function() {
+﻿var geStation = (function () {
+   "use strict"
+// Public
+   return {
+   	Initialise: function () {
+       geStation.Maps.initialise ();
+       $(".js-play").on("click",geStation.Animation.Play);
+      },
+      Maps: {
+         initialise: function () {
+             var mapOptions = {
+                 center: new google.maps.LatLng(54.226708, -2.790527),
+                 zoom: 6,
+                 mapTypeId: google.maps.MapTypeId.ROADMAP
+             };
+             var map = new google.maps.Map(document.getElementById("map-canvas"),
+                 mapOptions);
+         },
+      },
+   };
+}());
+
+$(document).ready(function () {geStation.Initialise();});
+$(function() {
   "use strict";
   var
     Station = Backbone.Model.extend({
@@ -56,5 +79,15 @@
           this.$("#bb-station-list").append(view.render().el);
       },
     }),
+    Animation = function () {
+       return {
+          Play: function () {
+             
+          },
+          Pause: function () {
+          
+          },
+       };
+    },
     App = new AppView();
 });

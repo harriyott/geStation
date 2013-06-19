@@ -8,6 +8,7 @@
 	<body>
 		<header>
 			<h1>geStation</h1>
+			<span class="js-play">Play</span>
 		</header>
 		<section id="stationapp">
 			<div id="container">
@@ -45,28 +46,15 @@
 			</div>
 		</footer>
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_sVrF7VqA26OXJu_S5a4YrtgzBjjZ4nY&sensor=false"></script> 
 		<script src="./js/underscore.js"></script>
 		<script src="./js/backbone-min.js"></script>
 		<script src="./js/backbone.localStorage-min.js"></script>
-		<script src="./js/geStation.js"></script>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_sVrF7VqA26OXJu_S5a4YrtgzBjjZ4nY&sensor=false"></script>
-	    <script type="text/javascript">
-	        function initialize() {
-	            var mapOptions = {
-	                center: new google.maps.LatLng(54.226708, -2.790527),
-	                zoom: 6,
-	                mapTypeId: google.maps.MapTypeId.ROADMAP
-	            };
-	            var map = new google.maps.Map(document.getElementById("map-canvas"),
-    	            mapOptions);
-	        }
-	        google.maps.event.addDomListener(window, 'load', initialize);
-    	</script>
-        
-          <script type="text/template" id="station-template">
-            <div class="view">
-              <%- name %>
-            </div>
-          </script>
+		<script src="./js/geStation.js"></script>   
+       <script type="text/template" id="station-template">
+         <div class="view">
+           <%- name %>
+         </div>
+       </script>
 	</body>
 </html>
