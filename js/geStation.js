@@ -13,9 +13,20 @@
                  zoom: 6,
                  mapTypeId: google.maps.MapTypeId.ROADMAP
              };
-             var map = new google.maps.Map(document.getElementById("map-canvas"),
+             geStation.Map = new google.maps.Map(document.getElementById("map-canvas"),
                  mapOptions);
          },
+      },
+      Map: null,
+      Animation: function () {
+         return {
+            Play: function () {
+               
+            },
+            Pause: function () {
+            
+            },
+         };
       },
    };
 }());
@@ -77,17 +88,16 @@ $(function() {
       addOne: function (station) {
           var view = new StationView({ model: station });
           this.$("#bb-station-list").append(view.render().el);
+          
+          var myLatlng = new google.maps.LatLng(station.attributes.lng,station.attributes.lat);          
+            
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: geStation.Map,
+                title:station.attributes.name
+            });
+          
       },
     }),
-    Animation = function () {
-       return {
-          Play: function () {
-             
-          },
-          Pause: function () {
-          
-          },
-       };
-    },
     App = new AppView();
 });
