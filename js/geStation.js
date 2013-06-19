@@ -94,7 +94,8 @@ $(function() {
             var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: geStation.Map,
-                title:station.attributes.name
+                title:station.attributes.name,
+                visible: false
             });
           
       },
