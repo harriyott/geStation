@@ -25,7 +25,7 @@ html[xmlns] .clearfix {
 
 body {
 	font-family: 'Droid Sans', Arial;
-	background-color: #bbcc44;
+	background-color: #2ecc71;
 }
 
 a {
@@ -51,7 +51,7 @@ li {
 header {
 	height: 20px;
 	padding: 10px;
-	color: #333;
+	color: #fcfcfc;
 }
 
 #map {
@@ -67,8 +67,10 @@ header {
 }
 
 #stationlist {
+   box-sizing: border-box;
+   padding-top:20px;
 	float: right;
-	background-color:#5588bb;
+	background-color:#2980b9;
 	color: #fff;
 	line-height: 1.2;
 	overflow: scroll;
@@ -80,6 +82,20 @@ header {
 
 h1 {
    display:inline;
+}
+
+.js-play {
+   cursor:pointer;
+   font-size:22px;
+   -o-transition:.4s;
+   -ms-transition:.4s;
+   -moz-transition:.4s;
+   -webkit-transition:.4s;
+   transition:.4s;
+}
+
+.js-play:hover {
+   color:#555555;
 }
 
 @media screen and (orientation:portrait) {
