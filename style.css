@@ -25,7 +25,7 @@ html[xmlns] .clearfix {
 
 body {
 	font-family: 'Droid Sans', Arial;
-	background-color: #2ecc71;
+	background-color: #363648;
 }
 
 a {
@@ -67,8 +67,6 @@ header {
 }
 
 #stationlist {
-   box-sizing: border-box;
-   padding-top:20px;
 	float: right;
 	background-color:#2980b9;
 	color: #fff;
@@ -77,11 +75,12 @@ header {
 }
 
 #stationlist ul li{
-	padding-left: 10px;
+	padding: 10px;
 }
 
 h1 {
    display:inline;
+   font-size:22px;
 }
 
 .js-play {
@@ -95,7 +94,7 @@ h1 {
 }
 
 .js-play:hover {
-   color:#555555;
+   color:#e5e5e5;
 }
 
 @media screen and (orientation:portrait) {

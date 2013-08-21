@@ -4,7 +4,7 @@
    return {
    	Initialise: function () {
        geStation.Maps.initialise ();
-       $(".js-play").on("click",geStation.Animation.Play);
+         $(".js-play").on("click",geStation.Animation.Play);
       },
       Maps: {
          initialise: function () {
@@ -18,15 +18,13 @@
          },
       },
       Map: null,
-      Animation: function () {
-         return {
-            Play: function () {
-               
-            },
-            Pause: function () {
+      Animation: {
+         Play: function () {
             
-            },
-         };
+         },
+         Pause: function () {
+         
+         },
       },
    };
 }());
