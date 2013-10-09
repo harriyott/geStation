@@ -1,5 +1,7 @@
 ﻿var geStation = (function () {
    "use strict"
+   var _isPlaying = false,
+   _stationIndex = 0;
 // Public
    return {
    	Initialise: function () {
@@ -18,12 +20,22 @@
          },
       },
       Map: null,
+      Stations: null,
       Animation: {
          Play: function () {
-            
+         	_isPlaying = true;
+         	geStation.Animation.ShowStation();
          },
          Pause: function () {
-         
+         	_isPlaying = false;
+         },
+         ShowStation : function () {
+         	if(geStation.Stations.length === _stationIndex) {
+         		return;
+         	}
+         	setTimeout(geStation.Animation.ShowStation, 500);
+         	geStation.Stations.at(_stationIndex).marker.setVisible(true);
+         	_stationIndex++;
          },
       },
    };
@@ -40,7 +52,8 @@ $(function() {
           lat: 0,
           lng: 0,
           opened: 0,
-          closed: 0
+          closed: 0,
+          marker: null
         };
       }
     }),
@@ -97,8 +110,9 @@ $(function() {
                 title:station.attributes.name,
                 visible: false
             });
-          
+          station.marker = marker;
       },
     }),
     App = new AppView();
+    geStation.Stations = Stations;
 });
