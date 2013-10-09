@@ -19,6 +19,7 @@
                     mapOptions);
             }
         },
+        Data: {},
         Map: null,
         Stations: null,
         Animation: {
@@ -84,20 +85,7 @@ $(function () {
           el: $("#stationapp"),
           initialize: function () {
               this.listenTo(stations, 'add', this.addOne);
-              stations.create({
-                  name: 'Uckfield',
-                  lat: 1,
-                  lng: 50,
-                  opened: 1902,
-                  closed: 1980
-              });
-              stations.create({
-                  name: 'Newick and Chailey',
-                  lat: 1.1,
-                  lng: 50.1,
-                  opened: 1900,
-                  closed: 1985
-              });
+              geStation.Data.CreateStations(stations);
               stations.sort();
           },
           addOne: function (station) {
