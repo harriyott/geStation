@@ -34,7 +34,7 @@
                 if (geStation.Stations.length === stationIndex) {
                     return;
                 }
-                setTimeout(geStation.Animation.ShowStation, 500);
+                setTimeout(geStation.Animation.ShowStation, 200);
                 geStation.Stations.at(stationIndex).marker.setVisible(true);
                 stationIndex++;
             }
