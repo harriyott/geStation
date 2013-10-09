@@ -104,12 +104,12 @@ $(function() {
           var view = new StationView({ model: station });
           this.$("#bb-station-list").append(view.render().el);
           var myLatlng = new google.maps.LatLng(station.attributes.lng,station.attributes.lat);          
-            var marker = new google.maps.Marker({
-                position: myLatlng,
-                map: geStation.Map,
-                title:station.attributes.name,
-                visible: false
-            });
+          var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: geStation.Map,
+            title:station.attributes.name,
+            visible: false
+          });
           station.marker = marker;
       },
     }),
