@@ -3,7 +3,9 @@
     var isPlaying,
         stationIndex = 0,
         stationCount = 0,
-        markerIndex = 0;
+        markerIndex = 0,
+        iconPlay = "icon-play",
+        iconPause = "icon-pause";
     // Public
     return {
         Initialise: function () {
@@ -11,7 +13,7 @@
             geStation.Stations = geStation.Data;
             stationCount = geStation.Stations.length;
             geStation.Maps.initialise();
-            $(".js-play").on("click", geStation.Animation.Play);
+            $(".js-play").on("click", geStation.Animation.Toggle);
         },
         Maps: {
             initialise: function () {
@@ -46,15 +48,18 @@
         Markers: [],
         Stations: null,
         Animation: {
-            Play: function () {
-                isPlaying = true;
-                geStation.Animation.ShowStation();
-            },
-            Pause: function () {
-                isPlaying = false;
+            Toggle: function () {
+            	isPlaying = !isPlaying;
+            	if(isPlaying) {
+            		geStation.Animation.ShowStation();
+                }
+                var addClass = isPlaying ? iconPause : iconPlay;
+                var removeClass = isPlaying ? iconPlay : iconPause;
+                $(".js-play i").addClass(addClass).removeClass(removeClass);
+                
             },
             ShowStation: function () {
-                if (geStation.Stations.length === markerIndex) {
+                if (geStation.Stations.length === markerIndex || !isPlaying) {
                     return;
                 }
                 setTimeout(geStation.Animation.ShowStation, 200);
