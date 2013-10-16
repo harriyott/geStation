@@ -86,11 +86,18 @@ $(function () {
           initialize: function () {
               this.listenTo(stations, 'add', this.addOne);
               geStation.Data.CreateStations(stations);
+              
+              alert(stations.length);
+              
               stations.sort();
+              
+              
+              
           },
           addOne: function (station) {
-              var view = new StationView({ model: station });
-              this.$("#bb-station-list").append(view.render().el);
+              //var view = new StationView({ model: station });
+              //this.$("#bb-station-list").append(view.render().el);
+             
               var myLatlng = new google.maps.LatLng(station.attributes.lng, station.attributes.lat);
               var marker = new google.maps.Marker({
                   position: myLatlng,
@@ -99,6 +106,8 @@ $(function () {
                   visible: false
               });
               station.marker = marker;
+             
+              
           },
       }),
       app = new AppView();
