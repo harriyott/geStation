@@ -36,7 +36,15 @@
                     position: myLatlng,
                     map: geStation.Map,
                     title: station.name,
-                    visible: false
+                    visible: false,
+                    icon: {
+                    	path: google.maps.SymbolPath.CIRCLE,
+                    	scale:4,
+                    	strokeColor:'#fff',
+                    	fillColor:'#f00',
+                    	fillOpacity: 0.6,
+                    	strokeWeight:1
+                    }
                 });
                 geStation.Markers[stationIndex] = marker;
                 stationIndex++;
