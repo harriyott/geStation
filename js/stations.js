@@ -9598,6 +9598,14 @@
             closed: 1881
         },
         {
+            name: 'Newick and Chailey',
+            lng: 50.972,
+            lat: -0.0063,
+            opened: 1882,
+            closed: 1882,
+            wikiUrl: 'Newick_and_Chailey_railway_station'
+        },
+        {
             name: 'Tilehurst',
             lng: 51.4715,
             lat: -1.0295,
