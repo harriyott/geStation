@@ -1,10 +1,15 @@
 ﻿var geStation = (function () {
     "use strict";
     var isPlaying,
-        stationIndex = 0;
+        stationIndex = 0,
+        stationCount = 0,
+        markerIndex = 0;
     // Public
     return {
         Initialise: function () {
+            stationIndex = 0;
+            geStation.Stations = geStation.Data;
+            stationCount = geStation.Stations.length;
             geStation.Maps.initialise();
             $(".js-play").on("click", geStation.Animation.Play);
         },
@@ -17,10 +22,28 @@
                 };
                 geStation.Map = new google.maps.Map(document.getElementById("map-canvas"),
                     mapOptions);
+                setTimeout(geStation.Maps.addMarker,200);
+            },
+            addMarker: function () {
+                if (stationIndex === stationCount) {
+                    return;
+                }
+                var station = geStation.Stations[stationIndex];
+                var myLatlng = new google.maps.LatLng(station.lng, station.lat);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: geStation.Map,
+                    title: station.name,
+                    visible: false
+                });
+                geStation.Markers[stationIndex] = marker;
+                stationIndex++;
+                setTimeout(geStation.Maps.addMarker, 20);
             }
         },
         Data: {},
         Map: null,
+        Markers: [],
         Stations: null,
         Animation: {
             Play: function () {
@@ -31,85 +54,14 @@
                 isPlaying = false;
             },
             ShowStation: function () {
-                if (geStation.Stations.length === stationIndex) {
+                if (geStation.Stations.length === markerIndex) {
                     return;
                 }
                 setTimeout(geStation.Animation.ShowStation, 200);
-                geStation.Stations.at(stationIndex).marker.setVisible(true);
-                stationIndex++;
+                geStation.Markers[markerIndex].setVisible(true);
+                markerIndex++;
             }
         }
     };
 }());
-
 $(document).ready(function () { geStation.Initialise(); });
-$(function () {
-    "use strict";
-    var
-      Station = Backbone.Model.extend({
-          defaults: function () {
-              return {
-                  name: "empty station",
-                  lat: 0,
-                  lng: 0,
-                  opened: 0,
-                  closed: 0,
-                  marker: null
-              };
-          }
-      }),
-      StationList = Backbone.Collection.extend({
-          model: Station,
-          localStorage: new Backbone.LocalStorage("station-backbone"),
-          comparator: function (item) {
-              return item.get('opened');
-          }
-      }),
-      stations = new StationList(),
-
-      StationView = Backbone.View.extend({
-          tagName: "li",
-          template: _.template($('#station-template').html()),
-          events: {
-
-          },
-          initialize: function () {
-              this.listenTo(this.model, 'change', this.render);
-          },
-          render: function () {
-              this.$el.html(this.template(this.model.toJSON()));
-              return this;
-          }
-      }),
-      AppView = Backbone.View.extend({
-          el: $("#stationapp"),
-          initialize: function () {
-              this.listenTo(stations, 'add', this.addOne);
-              geStation.Data.CreateStations(stations);
-              
-              alert(stations.length);
-              
-              stations.sort();
-              
-              
-              
-          },
-          addOne: function (station) {
-              //var view = new StationView({ model: station });
-              //this.$("#bb-station-list").append(view.render().el);
-             
-              var myLatlng = new google.maps.LatLng(station.attributes.lng, station.attributes.lat);
-              var marker = new google.maps.Marker({
-                  position: myLatlng,
-                  map: geStation.Map,
-                  title: station.attributes.name,
-                  visible: false
-              });
-              station.marker = marker;
-             
-              
-          },
-      }),
-      app = new AppView();
-    geStation.Stations = stations;
-});
