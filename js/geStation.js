@@ -72,6 +72,7 @@
                 }
                 setTimeout(geStation.Animation.ShowStation, 200);
                 geStation.Markers[markerIndex].setVisible(true);
+                $('#js-current-year').text(geStation.Stations[markerIndex].opened);
                 markerIndex++;
             }
         }

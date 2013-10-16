@@ -1,140 +1,142 @@
 /* Utility */
 
 .clearfix:after {
-	content: ".";
-	display: block;
-	clear: both;
-	visibility: hidden;
-	line-height: 0;
-	height: 0;
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
 }
- 
+
 .clearfix {
-	display: inline-block;
+    display: inline-block;
 }
- 
+
 html[xmlns] .clearfix {
-	display: block;
+    display: block;
 }
- 
+
 * html .clearfix {
-	height: 1%;
+    height: 1%;
 }
 
 /* General */
 
 body {
-	font-family: 'Droid Sans', Arial;
-	background-color: #363648;
+    font-family: 'Droid Sans', Arial;
+    background-color: #363648;
 }
 
 a {
-	text-decoration: none;
-	color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
-a:hover {
-	text-decoration: underline;
-}
+    a:hover {
+        text-decoration: underline;
+    }
 
 li {
-	list-style: none;
+    list-style: none;
 }
 
 #container {
-	height: 90%;
-	width: 100%;
-	background-color:#d3d3d3;
-	position: relative;
+    height: 90%;
+    width: 100%;
+    background-color: #d3d3d3;
+    position: relative;
 }
 
 header {
-	height: 20px;
-	padding: 10px;
-	color: #fcfcfc;
+    height: 20px;
+    padding: 10px;
+    color: #fcfcfc;
 }
 
 #map {
-	background-color: #c2e2e2;
-	width: 100%;
-	height:100%;
-	overflow: hidden;
+    background-color: #c2e2e2;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 #map-canvas {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 #stationlist {
-	float: right;
-	background-color:#2980b9;
-	color: #fff;
-	line-height: 1.2;
-	overflow: scroll;
+    float: right;
+    background-color: #2980b9;
+    color: #fff;
+    line-height: 1.2;
+    overflow: scroll;
 }
 
-#stationlist ul li{
-	padding: 10px;
-}
+    #stationlist ul li {
+        padding: 10px;
+    }
 
 h1 {
-   display:inline;
-   font-size:22px;
-   float: left;
-   margin-right:15px;
+    display: inline;
+    font-size: 22px;
+    float: left;
+    margin-right: 15px;
 }
 
 .js-play {
-   cursor:pointer;
-   font-size:22px;
-   -o-transition:.4s;
-   -ms-transition:.4s;
-   -moz-transition:.4s;
-   -webkit-transition:.4s;
-   transition:.4s;
-   font-size:13px;
-   background:#fff;
-   color:#333;
-   width:25px;
-   height:25px;
-   display: inline-block;
-   border-radius: 100%;
-   text-align: center;
+    cursor: pointer;
+    font-size: 22px;
+    -o-transition: .4s;
+    -ms-transition: .4s;
+    -moz-transition: .4s;
+    -webkit-transition: .4s;
+    transition: .4s;
+    font-size: 13px;
+    background: #fff;
+    color: #333;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border-radius: 100%;
+    text-align: center;
 }
 
-.js-play i {
-	position: relative;
-	top:5px;
-}
+    .js-play i {
+        position: relative;
+        top: 5px;
+    }
 
-.js-play .icon-play {
-	left: 2px;
-}
+    .js-play .icon-play {
+        left: 2px;
+    }
 
+    .js-play:hover {
+        color: #555;
+    }
 
-.js-play:hover {
-   color:#555;
+.current-year {
+    font-size: 1.2em;
 }
 
 @media screen and (orientation:portrait) {
-	#map {
-		height: 70%;
-	}
-	
-	#stationlist {
-		margin: 0 auto;
-		width: 100%;
-		height: 30%;
-	}
+    #map {
+        height: 70%;
+    }
+
+    #stationlist {
+        margin: 0 auto;
+        width: 100%;
+        height: 30%;
+    }
 }
 
 @media screen and (orientation:landscape) {
-#stationlist {
-	position: absolute;
-	top: 0px;
-	right:0px;
-	height: 100%;
-}
-
+    #stationlist {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        height: 100%;
+    }
 }
