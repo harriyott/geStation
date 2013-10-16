@@ -1,17 +1,11 @@
 ﻿geStation.Data = [
         {
-            name: 'Teynham',
-            lng: 51.33326,
-            lat: 0.8079666,
-            opened: 1786,
-            closed: 1786
-        },
-        {
             name: 'Kilmarnock',
             lng: 55.612,
             lat: -4.499,
             opened: 1812,
-            closed: 1812
+            closed: 1812,
+            wikiUrl: 'Kilmarnock_railway_station'
         },
         {
             name: 'Earlestown',
@@ -5302,6 +5296,13 @@
             name: 'Arnside',
             lng: 54.202,
             lat: -2.828,
+            opened: 1858,
+            closed: 1858
+        },
+        {
+            name: 'Teynham',
+            lng: 51.33326,
+            lat: 0.8079666,
             opened: 1858,
             closed: 1858
         },
