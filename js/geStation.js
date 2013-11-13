@@ -6,8 +6,8 @@
         stationIndex = 0,
         stationCount = 0,
         markerIndex = 0,
-        iconPlay = "icon-play",
-        iconPause = "icon-pause";
+        iconPlay = "fa-play",
+        iconPause = "fa-pause";
     // Public
     return {
         Initialise: function () {

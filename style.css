@@ -109,10 +109,10 @@ h1 {
 
     .js-play i {
         position: relative;
-        top: 5px;
+        top: 6px;
     }
 
-    .js-play .icon-play {
+    .js-play .fa-play {
         left: 1px;
     }
 
