@@ -93,3 +93,9 @@ $(document).ready(function () {
 	geStation.Initialise();
 });
 
+google.maps.event.addDomListener(window, "resize", function() {
+    currentCenter = geStation.Map.getCenter();
+    google.maps.event.trigger(geStation.Map, "resize");
+    geStation.Map.panTo(currentCenter);
+});
+
