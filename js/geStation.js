@@ -1,8 +1,6 @@
 ﻿var geStation = (function () {
     "use strict";
     var isPlaying,
-    	chosenStation,
-        currentCenter = new google.maps.LatLng(54.226708, -2.790527),
         stationIndex = 0,
         stationCount = 0,
         markerIndex = 0,
@@ -21,7 +19,7 @@
         Maps: {
             initialise: function () {
                 var mapOptions = {
-                    center: currentCenter,
+                    center: new google.maps.LatLng(54.226708, -2.790527),
                     zoom: 6,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
@@ -50,7 +48,7 @@
                     }
                 });
                 geStation.Markers[stationIndex] = marker;
-                $('#bb-station-list').append('<li class="station_listing" id="station'+stationIndex+'">'+station.name+'</li>');
+                $('#bb-station-list').append('<li class="station_listing" data-id="'+stationIndex+'">'+station.name+'</li>');
                 stationIndex++;
                 setTimeout(geStation.Maps.addMarker, 20);
             }
@@ -81,9 +79,8 @@
         },
         Zoom: {
         	ZoomToStation: function () {
-        		chosenStation = $(this).attr('id').replace("station", "");
-                currentCenter = new google.maps.LatLng(geStation.Stations[chosenStation].lng, geStation.Stations[chosenStation].lat);
-                geStation.Map.panTo(currentCenter);
+        		var targetStation = geStation.Stations[$(this).data('id')];
+                geStation.Map.panTo(new google.maps.LatLng(targetStation.lng, targetStation.lat));
                 geStation.Map.setZoom(13);
         	},
         }
@@ -94,7 +91,7 @@ $(document).ready(function () {
 });
 
 google.maps.event.addDomListener(window, "resize", function() {
-    currentCenter = geStation.Map.getCenter();
+    var currentCenter = geStation.Map.getCenter();
     google.maps.event.trigger(geStation.Map, "resize");
     geStation.Map.panTo(currentCenter);
 });
