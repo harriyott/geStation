@@ -5,21 +5,37 @@
         stationCount = 0,
         markerIndex = 0,
         iconPlay = "fa-play",
-        iconPause = "fa-pause";
+        iconPause = "fa-pause",
+        mapCenter;
     // Public
     return {
         Initialise: function () {
             stationIndex = 0;
             geStation.Stations = geStation.Data;
             stationCount = geStation.Stations.length;
+            geStation.Maps.AverageLatLng();
             geStation.Maps.initialise();
             $(".js-play").on("click", geStation.Animation.Toggle);
             $("#stationlist").on("click", '.station_listing', geStation.Zoom.ZoomToStation);
         },
         Maps: {
+            AverageLatLng: function () {
+            	var latLngCount,
+            		currentStation,
+            		averageStationLat = 0,
+            		averageStationLng = 0;
+            	for (latLngCount = 0; latLngCount < geStation.Stations.length; ++latLngCount) {
+            		currentStation = geStation.Stations[latLngCount];
+            		averageStationLat = averageStationLat + currentStation.lat * 3.14 / 180;
+            		averageStationLng = averageStationLng + currentStation.lng * 3.14 / 180;
+            	}
+            	averageStationLat = (averageStationLat / geStation.Stations.length) * 180 / 3.14;
+				averageStationLng = (averageStationLng / geStation.Stations.length) * 180 / 3.14;
+            	mapCenter = new google.maps.LatLng(averageStationLng, averageStationLat);
+            },
             initialise: function () {
                 var mapOptions = {
-                    center: new google.maps.LatLng(54.226708, -2.790527),
+                    center: mapCenter,
                     zoom: 6,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
@@ -71,7 +87,7 @@
                 if (geStation.Stations.length === markerIndex || !isPlaying) {
                     return;
                 }
-                setTimeout(geStation.Animation.ShowStation, 200);
+                setTimeout(geStation.Animation.ShowStation, 20);
                 geStation.Markers[markerIndex].setVisible(true);
                 $('#js-current-year').text(geStation.Stations[markerIndex].opened);
                 markerIndex++;
@@ -82,7 +98,7 @@
         		var targetStation = geStation.Stations[$(this).data('id')];
                 geStation.Map.panTo(new google.maps.LatLng(targetStation.lng, targetStation.lat));
                 geStation.Map.setZoom(13);
-        	},
+        	}
         }
     };
 }());
