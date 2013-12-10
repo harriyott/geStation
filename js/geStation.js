@@ -4,6 +4,7 @@
         stationIndex = 0,
         stationCount = 0,
         markerIndex = 0,
+        infowindow,
         iconPlay = "fa-play",
         iconPause = "fa-pause",
         mapCenter;
@@ -53,6 +54,8 @@
                     position: myLatlng,
                     map: geStation.Map,
                     title: station.name,
+                    opened: station.opened,
+                    closed: station.closed,
                     visible: false,
                     icon: {
                     	path: google.maps.SymbolPath.CIRCLE,
@@ -67,7 +70,27 @@
                 $('#bb-station-list').append('<li class="station_listing" data-id="'+stationIndex+'">'+station.name+'</li>');
                 stationIndex++;
                 setTimeout(geStation.Maps.addMarker, 20);
-            }
+
+                google.maps.event.addListener(marker, 'click', function() {
+					geStation.Maps.createInfoWindow(marker);
+				});
+
+            },
+            createInfoWindow: function (marker) {
+            	if(infowindow){
+            		infowindow.close();
+            	}
+            	var content = '<div class="geStation-infowindow"><h2>'+marker.title+'</h2><p>Opened in '+marker.opened+'</p>';
+            	if(marker.opened != marker.closed ){
+            		content += '<p>Closed in '+marker.closed+'</p>';
+            	}
+            	content += '</div>';
+	            infowindow = new google.maps.InfoWindow({
+					content: content
+				});
+				infowindow.open(geStation.Map,marker);
+			}
+
         },
         Data: {},
         Map: null,
@@ -87,7 +110,7 @@
                 if (geStation.Stations.length === markerIndex || !isPlaying) {
                     return;
                 }
-                setTimeout(geStation.Animation.ShowStation, 20);
+                setTimeout(geStation.Animation.ShowStation, 80);
                 geStation.Markers[markerIndex].setVisible(true);
                 $('#js-current-year').text(geStation.Stations[markerIndex].opened);
                 markerIndex++;
@@ -111,4 +134,6 @@ google.maps.event.addDomListener(window, "resize", function() {
     google.maps.event.trigger(geStation.Map, "resize");
     geStation.Map.panTo(currentCenter);
 });
+
+
 
