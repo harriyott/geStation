@@ -21,18 +21,21 @@
         },
         Maps: {
             AverageLatLng: function () {
-            	var latLngCount,
-            		currentStation,
-            		averageStationLat = 0,
-            		averageStationLng = 0;
-            	for (latLngCount = 0; latLngCount < geStation.Stations.length; ++latLngCount) {
-            		currentStation = geStation.Stations[latLngCount];
-            		averageStationLat = averageStationLat + currentStation.lat * 3.14 / 180;
-            		averageStationLng = averageStationLng + currentStation.lng * 3.14 / 180;
-            	}
-            	averageStationLat = (averageStationLat / geStation.Stations.length) * 180 / 3.14;
-				averageStationLng = (averageStationLng / geStation.Stations.length) * 180 / 3.14;
-            	mapCenter = new google.maps.LatLng(averageStationLng, averageStationLat);
+                var averages = geStation.Maps.calculateAverage(geStation.Stations);
+                mapCenter = new google.maps.LatLng(averages.lng, averages.lat);
+            },
+            calculateAverage: function (latLngs) {
+                var latLngCount,
+                    currentStation,
+                    averageStationLat,
+                    averageStationLng,
+                    maxLat = Math.max.apply( null, latLngs.map( function(a) { return a.lat; } )),
+                    minLat = Math.min.apply( null, latLngs.map( function(a) { return a.lat; } )),
+                    maxLng = Math.max.apply( null, latLngs.map( function(a) { return a.lng; } )),
+                    minLng = Math.min.apply( null, latLngs.map( function(a) { return a.lng; } ));
+                averageStationLat = (maxLat + minLat) / 2.0;
+                averageStationLng =	(maxLng + minLng) / 2.0;
+                return { lat: averageStationLat, lng: averageStationLng };
             },
             initialise: function () {
                 var mapOptions = {
