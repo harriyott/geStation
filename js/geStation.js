@@ -69,7 +69,7 @@
                     	strokeWeight:1
                     }
                 });
-                geStation.Markers[stationIndex] = marker;
+                geStation.Stations[stationIndex].marker = marker;
                 $('#bb-station-list').append('<li class="station_listing" data-id="'+stationIndex+'">'+station.name+'</li>');
                 stationIndex++;
                 setTimeout(geStation.Maps.addMarker, 20);
@@ -97,7 +97,6 @@
         },
         Data: {},
         Map: null,
-        Markers: [],
         Stations: null,
         Animation: {
             Toggle: function () {
@@ -114,7 +113,7 @@
                     return;
                 }
                 setTimeout(geStation.Animation.ShowStation, 80);
-                geStation.Markers[markerIndex].setVisible(true);
+                geStation.Stations[markerIndex].marker.setVisible(true);
                 $('#js-current-year').text(geStation.Stations[markerIndex].opened);
                 markerIndex++;
             }
