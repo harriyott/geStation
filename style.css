@@ -53,7 +53,7 @@ header,
 }
 
 header {
-    height:43px;
+    min-height:43px;
     padding: 10px;
     color: #fcfcfc;
     position: fixed;
@@ -62,6 +62,13 @@ header {
     background:#2c3e50;
     width:100%;
     box-shadow:0px 0px 4px #222;
+}
+
+#slider {
+    width:300px;
+    max-width:100%;
+    float:right;
+    margin-left:30px;
 }
 
 #stationapp {

@@ -8,7 +8,8 @@
         iconPlay = "fa-play",
         iconPause = "fa-pause",
         mapCenter,
-        openMarker;
+        openMarker,
+        currentYear;
     // Public
     return {
         Initialise: function () {
@@ -16,9 +17,11 @@
             geStation.Stations = geStation.Data;
             stationCount = geStation.Stations.length;
             geStation.Maps.AverageLatLng();
+            geStation.Dates.GetDateData();
             geStation.Maps.initialise();
             $(".js-play").on("click", geStation.Animation.Toggle);
             $("#stationlist").on("click", '.station_listing', geStation.Zoom.ZoomToStation);
+            $("#slider").on("input", geStation.Animation.Slider);
         },
         Maps: {
             AverageLatLng: function () {
@@ -99,6 +102,17 @@
         Data: {},
         Map: null,
         Stations: null,
+        Dates: {
+            GetDateData: function () {
+                var maxDate = Math.max.apply( null, geStation.Stations.map( function(a) { return a.opened; } )),
+                    minDate = Math.min.apply( null, geStation.Stations.map( function(a) { return a.opened; } )),
+                    maxClose = Math.max.apply( null, geStation.Stations.map( function(a) { return a.closed; } ));
+                if(maxClose > maxDate) {
+                    maxDate = maxClose;
+                }
+                //$('#slider').attr('min', minDate).attr('max', maxDate).val(minDate);
+            },
+        },
         Animation: {
             Toggle: function () {
             	isPlaying = !isPlaying;
@@ -115,8 +129,14 @@
                 }
                 setTimeout(geStation.Animation.ShowStation, 80);
                 geStation.Stations[markerIndex].marker.setVisible(true);
-                $('#js-current-year').text(geStation.Stations[markerIndex].opened);
+                currentYear = geStation.Stations[markerIndex].opened;
+                $('#js-current-year').text(currentYear);
+                $("#slider").val(currentYear);
                 markerIndex++;
+            },
+            Slider: function () {
+                isPlaying = false;
+                $('#js-current-year').text($("#slider").val());
             }
         },
         Zoom: {
