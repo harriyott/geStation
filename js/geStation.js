@@ -123,6 +123,7 @@
         		var targetStation = geStation.Stations[$(this).data('id')];
                 geStation.Map.panTo(new google.maps.LatLng(targetStation.lng, targetStation.lat));
                 geStation.Map.setZoom(13);
+                geStation.Maps.createInfoWindow(geStation.Stations[$(this).data('id')].marker);
         	}
         }
     };
