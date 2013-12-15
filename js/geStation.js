@@ -7,7 +7,8 @@
         infowindow,
         iconPlay = "fa-play",
         iconPause = "fa-pause",
-        mapCenter;
+        mapCenter,
+        openMarker;
     // Public
     return {
         Initialise: function () {
@@ -123,8 +124,21 @@
         		var targetStation = geStation.Stations[$(this).data('id')];
                 geStation.Map.panTo(new google.maps.LatLng(targetStation.lng, targetStation.lat));
                 geStation.Map.setZoom(13);
-                geStation.Maps.createInfoWindow(geStation.Stations[$(this).data('id')].marker);
-        	}
+                openMarker = geStation.Stations[$(this).data('id')].marker;
+                geStation.Maps.createInfoWindow(openMarker);
+                if(! openMarker.visible) {
+                    openMarker.icon.fillColor = '#666';
+                    openMarker.setVisible(true);
+                    setTimeout(geStation.Zoom.ResetStation, 5000);
+                }
+        	},
+            ResetStation: function () {
+                openMarker.setVisible(false);
+                openMarker.icon.fillColor = '#f00';
+                if(infowindow){
+                    infowindow.close();
+                }
+            }
         }
     };
 }());
