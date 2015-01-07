@@ -76,6 +76,7 @@
                 geStation.Stations[stationIndex].marker = marker;
                 $('#bb-station-list').append('<li class="station_listing" data-id="'+stationIndex+'">'+station.name+'</li>');
                 stationIndex++;
+                $('#slider').css('background-size', stationIndex / geStation.Stations.length * 100 + '% 100%' );
                 setTimeout(geStation.Maps.addMarker, 20);
 
                 google.maps.event.addListener(marker, 'click', function() {
@@ -110,7 +111,7 @@
                 if(maxClose > maxDate) {
                     maxDate = maxClose;
                 }
-                //$('#slider').attr('min', minDate).attr('max', maxDate).val(minDate);
+                $('#slider').attr('min', 0).attr('max', geStation.Stations.length - 1).val(0);
             },
         },
         Animation: {
@@ -128,15 +129,36 @@
                     return;
                 }
                 setTimeout(geStation.Animation.ShowStation, 80);
-                geStation.Stations[markerIndex].marker.setVisible(true);
-                currentYear = geStation.Stations[markerIndex].opened;
-                $('#js-current-year').text(currentYear);
-                $("#slider").val(currentYear);
+                geStation.Animation.SetStationVisibility( markerIndex, true );
+                $("#slider").val(markerIndex);
                 markerIndex++;
+            },
+            SetStationVisibility: function ( markerIdx, visibility ) {
+                if ( geStation.Stations[markerIdx].marker !== undefined ) {
+                    geStation.Stations[markerIdx].marker.setVisible( visibility );
+                    currentYear = geStation.Stations[markerIdx].opened;
+                    $('#js-current-year').text(currentYear);
+                }
             },
             Slider: function () {
                 isPlaying = false;
-                $('#js-current-year').text($("#slider").val());
+                $('#js-current-year').text( geStation.Stations[ $("#slider").val() ].opened );
+                var newMarker = $('#slider').val();
+
+                if ( newMarker > markerIndex ) {
+
+                    for ( var i = markerIndex; i < newMarker; i++ ) {
+                        geStation.Animation.SetStationVisibility( i, true );
+                    };
+
+                } else {
+
+                    for ( var i = markerIndex; i > newMarker; i-- ) {
+                        geStation.Animation.SetStationVisibility( i, false );
+                    };
+
+                }
+                markerIndex = newMarker;
             }
         },
         Zoom: {
