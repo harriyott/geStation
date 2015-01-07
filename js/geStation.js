@@ -68,8 +68,8 @@
                     	path: google.maps.SymbolPath.CIRCLE,
                     	scale:4,
                     	strokeColor:'#fff',
-                    	fillColor:'#f00',
-                    	fillOpacity: 0.6,
+                    	fillColor:'#' + ( ( 255 - ( station.opened - 1795 ) ).toString( 16 ) + '00' + ( station.opened - 1795 ).toString( 16 ) ).toLowerCase(),
+                    	fillOpacity: 0.8,
                     	strokeWeight:1
                     }
                 });
@@ -159,7 +159,7 @@
 
                 }
                 markerIndex = newMarker;
-            }
+            },
         },
         Zoom: {
         	ZoomToStation: function () {
@@ -169,14 +169,16 @@
                 openMarker = geStation.Stations[$(this).data('id')].marker;
                 geStation.Maps.createInfoWindow(openMarker);
                 if(! openMarker.visible) {
-                    openMarker.icon.fillColor = '#666';
+                    openMarker.icon.strokeColor = '#666';
+                    openMarker.icon.fillOpacity = 0.4;
                     openMarker.setVisible(true);
                     setTimeout(geStation.Zoom.ResetStation, 5000);
                 }
         	},
             ResetStation: function () {
                 openMarker.setVisible(false);
-                openMarker.icon.fillColor = '#f00';
+                openMarker.icon.strokeColor = '#fff';
+                openMarker.icon.fillOpacity = 0.8;
                 if(infowindow){
                     infowindow.close();
                 }
